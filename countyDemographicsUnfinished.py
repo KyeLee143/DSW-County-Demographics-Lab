@@ -4,15 +4,19 @@ def main():
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     print(high_income_counties(counties))
-    print(alphabetically_first_county(counties))
-    print(county_most_under_18(counties))
-    print(percent_most_under_18(counties))
-    print(lowest_median_income(counties))
-    print(state_with_most_counties(counties))
+    #print(alphabetically_first_county(counties))
+    #print(county_most_under_18(counties))
+    #print(percent_most_under_18(counties))
+    #print(lowest_median_income(counties))
+    #print(state_with_most_counties(counties))
 
 def high_income_counties(counties):
     """Return a LIST of the counties with a median household income over $90,000."""
-    
+    list_of_countys = [] 
+    for data in counties:
+        if data['Income']['Median Household Income'] > 90000:
+            list_of_countys.append (data['County'])
+    return list_of_countys       
 
 def lowest_median_income(counties):
     """Return a name of a county with the lowest median household income"""
