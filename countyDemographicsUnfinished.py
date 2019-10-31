@@ -5,10 +5,10 @@ def main():
         counties = json.load(demographics_data)
     print(high_income_counties(counties))
     print(alphabetically_first_county(counties))
-    #print(county_most_under_18(counties))
-    #print(percent_most_under_18(counties))
+    print(county_most_under_18(counties))
+    print(percent_most_under_18(counties))
     print(lowest_median_income(counties))
-    #print(state_with_most_counties(counties))
+    print(state_with_most_counties(counties))
 
 def high_income_counties(counties):
     """Return a LIST of the counties with a median household income over $90,000."""
@@ -37,16 +37,34 @@ def alphabetically_first_county(counties):
     return alphabetically
     
 def percent_most_under_18(counties):
-    """Return the highest percent of under 18 year olds."""    
+    """Return the highest percent of under 18 year olds."""
+    Age = counties[0]['Age']['Percent Under 18 Years']
+    for data in counties:
+        if data ['Age']['Percent Under 18 Years'] > Age:
+            Age = data ['Age']['Percent Under 18 Years']
+    return Age 
     
 
 def county_most_under_18(counties):
     """Return the name a county with the highest percent of under 18 year olds."""
+    name = counties[0]['County']
+    highest = counties[0]['Age']['Percent Under 18 Years']
+    for data in counties:
+        if data ['Age']['Percent Under 18 Years'] > highest:
+            highest = data ['Age']['Percent Under 18 Years']
+            name = data ['County']
+    return name 
     
 def state_with_most_counties(counties):
     """Return a state that has the most counties."""
     #1. Make a dictionary that has a key for each state and the values keep track of the number of counties in each state
-    
+    states = counties [0]['State']
+    num_states = 0
+    for data in counties:
+        if data ['State'] == states:
+            num_states+=1
+    return num_states        
+          
     #2. Find the state in the dictionary with the most counties
     
     #3. Return the state with the most counties
