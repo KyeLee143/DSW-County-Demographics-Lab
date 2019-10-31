@@ -58,14 +58,16 @@ def county_most_under_18(counties):
 def state_with_most_counties(counties):
     """Return a state that has the most counties."""
     #1. Make a dictionary that has a key for each state and the values keep track of the number of counties in each state
+    dict = {'State'}
     states = counties [0]['State']
     num_states = 0
     for data in counties:
-        if data ['State'] == states:
-            num_states+=1
+        if data ['State'] in dict:
+            dict["State"]+=1
     return num_states        
           
     #2. Find the state in the dictionary with the most counties
+    
     
     #3. Return the state with the most counties
     
